@@ -206,26 +206,7 @@ onClick={() => setIsExplorerOpen(true)}
 </button>
   </section>
 
-  <section className="section ai-section">
-    <div className="ai-content">
-      <p className="eyebrow">AEROMIND AI</p>
-
-      <h2>
-        Still curious?
-        <br />
-        Ask the aircraft.
-      </h2>
-
-      <p>
-        Ask AeroMind about aircraft systems, components,
-        engineering concepts and technical documentation.
-      </p>
-
-      <button className="start-button">
-        Ask AeroMind
-      </button>
-    </div>
-  </section>
+  
 
   <section className="section components">
     <div className="section-heading">

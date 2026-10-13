@@ -2,20 +2,33 @@
   box-sizing: border-box;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   margin: 0;
-  font-family: Arial, sans-serif;
-  background: #0b0e13;
+  padding: 0;
+  background: #080a0f;
   color: #f4f5f7;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+button {
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 .app {
+  width: 100%;
   min-height: 100vh;
-  padding: 0 6vw;
+  overflow-x: hidden;
+  background: #080a0f;
 }
 
 .navbar {
+  width: 100%;
   height: 80px;
+  padding: 0 6vw;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -23,89 +36,733 @@ body {
 }
 
 .logo {
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 700;
-  letter-spacing: 0.2em;
+  letter-spacing: 0.25em;
+  color: #ffffff;
 }
 
 .nav-links {
   display: flex;
-  gap: 32px;
-  color: #9da3ad;
-  font-size: 14px;
+  align-items: center;
+  gap: 36px;
+  color: #8d949f;
+  font-size: 13px;
 }
 
 .nav-links span {
   cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.nav-links span:hover {
+  color: #ffffff;
 }
 
 .hero {
+  width: 100%;
   min-height: calc(100vh - 80px);
+  padding: 70px 6vw;
   display: grid;
-  grid-template-columns: 0.9fr 1.1fr;
+  grid-template-columns: 0.8fr 1.2fr;
   align-items: center;
   gap: 60px;
 }
 
 .hero-text {
-  max-width: 520px;
+  max-width: 580px;
 }
 
 .eyebrow {
-  font-size: 12px;
+  margin: 0 0 24px 0;
+  color: #969da8;
+  font-size: 11px;
+  font-weight: 600;
   letter-spacing: 0.2em;
-  color: #8d96a3;
-  margin-bottom: 24px;
 }
 
 h1 {
-  font-size: clamp(56px, 7vw, 100px);
-  line-height: 0.95;
-  letter-spacing: -0.05em;
   margin: 0;
-}
-
-.description {
-  color: #9da3ad;
-  line-height: 1.7;
-  max-width: 430px;
-  margin: 32px 0;
-}
-
-.start-button {
-  border: none;
-  background: #cd97c7;
-  color: #0b0e13;
-  padding: 14px 22px;
-  border-radius: 999px;
-  font-size: 14px;
-  cursor: pointer;
-}
-
-.aircraft-placeholder {
-  height: 520px;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 28px;
-  background:
-    radial-gradient(
-      circle at center,
-      rgba(255, 255, 255, 0.08),
-      transparent 60%
-    );
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
-.aircraft-placeholder span {
-  font-size: 72px;
+  font-size: clamp(56px, 7vw, 100px);
+  line-height: 0.93;
   font-weight: 600;
   letter-spacing: -0.05em;
 }
 
-.aircraft-placeholder p {
-  color: #f9f9f9;
+.description {
+  max-width: 480px;
+  margin: 32px 0;
+  color: #9299a4;
+  font-size: 15px;
+  line-height: 1.75;
+}
+
+.start-button {
+  padding: 14px 24px;
+  border: 0;
+  border-radius: 999px;
+  background: #d5a5cf;
+  color: #0b0d12;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.start-button:hover {
+  transform: translateY(-2px);
+  background: #e1b6db;
+}
+
+.see-more-button {
+  margin-top: 28px;
+  padding: 12px 0;
+  border: none;
+  background: transparent;
+  color: #b8bec8;
+  font-size: 13px;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.see-more-button:hover {
+  color: #ffffff;
+}
+
+.aircraft-viewer {
+  position: relative;
+  width: 100%;
+  height: 620px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 30px;
+  overflow: hidden;
+  background:
+    radial-gradient(
+      circle at center,
+      rgba(255, 255, 255, 0.08),
+      rgba(255, 255, 255, 0) 60%
+    );
+}
+
+.aircraft-viewer > div:first-child {
+  width: 100%;
+  height: 100%;
+}
+
+.viewer-label {
+  position: absolute;
+  left: 24px;
+  right: 24px;
+  bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+  color: #707783;
+  font-size: 9px;
+  letter-spacing: 0.15em;
+  pointer-events: none;
+}
+
+
+.technical-explorer-button {
+  position: absolute;
+  right: 24px;
+  bottom: 55px;
+  z-index: 10;
+  padding: 12px 18px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 999px;
+  background: rgba(8, 10, 15, 0.9);
+  color: #f4f5f7;
+  font-size: 12px;
+  cursor: pointer;
+  display: block;
+}
+
+.technical-explorer-button:hover {
+  background: #252a33;
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+
+.section {
+  width: 100%;
+  padding: 150px 6vw;
+  border-top: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+.section-heading {
+  max-width: 700px;
+}
+
+.section-heading h2 {
+  margin: 0;
+  color: #f4f5f7;
+  font-size: clamp(42px, 5vw, 72px);
+  line-height: 0.98;
+  font-weight: 500;
+  letter-spacing: -0.05em;
+}
+
+.overview {
+  display: grid;
+  grid-template-columns: 0.8fr 1.2fr;
+  gap: 100px;
+}
+
+.overview-content {
+  max-width: 650px;
+  padding-top: 55px;
+}
+
+.large-text {
+  margin: 0 0 35px 0;
+  color: #f4f5f7;
+  font-size: 26px;
+  line-height: 1.4;
+  letter-spacing: -0.02em;
+}
+
+.body-text {
+  margin: 0;
+  color: #858c97;
+  font-size: 15px;
+  line-height: 1.8;
+}
+
+.specifications {
+  display: block;
+}
+
+.spec-grid {
+  width: 100%;
+  margin-top: 80px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.spec {
+  min-height: 160px;
+  padding: 35px 25px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-right: 1px solid rgba(255, 255, 255, 0.08);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.spec:nth-child(3n) {
+  border-right: none;
+}
+
+.spec span {
+  color: #737a85;
+  font-size: 9px;
+  letter-spacing: 0.18em;
+}
+
+.spec strong {
+  color: #f4f5f7;
+  font-size: 27px;
+  font-weight: 400;
+  letter-spacing: -0.03em;
+}
+
+.history {
+  display: grid;
+  grid-template-columns: 0.8fr 1.2fr;
+  gap: 100px;
+}
+
+.timeline {
+  width: 100%;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.timeline-item {
+  display: grid;
+  grid-template-columns: 100px 1fr;
+  gap: 30px;
+  padding: 38px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.timeline-item > span {
+  color: #777e89;
   font-size: 11px;
-  letter-spacing: 0.2em;
+  letter-spacing: 0.12em;
+}
+
+.timeline-item h3 {
+  margin: 0 0 12px 0;
+  color: #f4f5f7;
+  font-size: 21px;
+  font-weight: 400;
+}
+
+.timeline-item p {
+  max-width: 500px;
+  margin: 0;
+  color: #858c97;
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+.components {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+.section-description {
+  max-width: 500px;
+  margin: 25px 0 0 0;
+  color: #858c97;
+  font-size: 15px;
+  line-height: 1.7;
+}
+
+.component-grid {
+  width: 100%;
+  margin-top: 80px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.component-card {
+  position: relative;
+  min-height: 340px;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.025);
+  cursor: pointer;
+  transition:
+    transform 0.25s ease,
+    background 0.25s ease,
+    border-color 0.25s ease;
+}
+
+.component-card:hover {
+  transform: translateY(-5px);
+  background: rgba(255, 255, 255, 0.045);
+  border-color: rgba(255, 255, 255, 0.16);
+}
+
+.component-number {
+  color: #666d78;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+}
+
+.component-content {
+  margin-top: auto;
+  margin-bottom: 30px;
+}
+
+.component-type {
+  margin: 0 0 10px 0;
+  color: #858c97;
+  font-size: 9px;
+  letter-spacing: 0.18em;
+}
+
+.component-card h3 {
+  margin: 0 0 15px 0;
+  color: #f4f5f7;
+  font-size: 34px;
+  font-weight: 400;
+  letter-spacing: -0.04em;
+}
+
+.component-card p {
+  max-width: 400px;
+  margin: 0;
+  color: #858c97;
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+.component-arrow {
+  position: absolute;
+  right: 30px;
+  bottom: 30px;
+  color: #aeb4bd;
+  font-size: 10px;
+  letter-spacing: 0.15em;
+}
+
+.footer {
+  width: 100%;
+  min-height: 180px;
+  padding: 50px 6vw;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  color: #6e7580;
+}
+
+.footer p {
+  margin: 0;
+  font-size: 12px;
+}
+
+@media (max-width: 900px) {
+
+  .nav-links {
+    display: none;
+  }
+
+  .hero {
+    grid-template-columns: 1fr;
+    padding-top: 50px;
+  }
+
+  .aircraft-viewer {
+    height: 500px;
+  }
+
+  .overview {
+    grid-template-columns: 1fr;
+    gap: 50px;
+  }
+
+  .history {
+    grid-template-columns: 1fr;
+    gap: 50px;
+  }
+
+  .spec-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .spec:nth-child(3n) {
+    border-right: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .spec:nth-child(2n) {
+    border-right: none;
+  }
+
+  .component-grid {
+    grid-template-columns: 1fr;
+  }
+
+}
+
+@media (max-width: 600px) {
+
+  .navbar {
+    padding: 0 25px;
+  }
+
+  .hero,
+  .section {
+    padding-left: 25px;
+    padding-right: 25px;
+  }
+
+  h1 {
+    font-size: 55px;
+  }
+
+  .aircraft-viewer {
+    height: 400px;
+    border-radius: 22px;
+  }
+
+  .viewer-label {
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .spec-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .spec {
+    border-right: none;
+  }
+
+  .timeline-item {
+    grid-template-columns: 70px 1fr;
+    gap: 15px;
+  }
+
+  .footer {
+    padding: 40px 25px;
+  }
+
+}
+
+/* AeroMind Technical Explorer */
+
+.explorer-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  justify-content: flex-end;
+  background: rgba(0, 0, 0, 0.65);
+  backdrop-filter: blur(5px);
+}
+
+.explorer-panel {
+  width: min(760px, 100%);
+  height: 100%;
+  overflow-y: auto;
+  background: #0d1118;
+  border-left: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: -20px 0 80px rgba(0, 0, 0, 0.4);
+  padding: 35px;
+  animation: explorer-slide-in 0.3s ease-out;
+}
+
+.explorer-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 20px;
+  padding-bottom: 25px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.explorer-header .eyebrow {
+  margin-bottom: 12px;
+}
+
+.explorer-header h2 {
+  margin: 0;
+  font-size: clamp(24px, 3vw, 34px);
+  font-weight: 500;
+  letter-spacing: -0.04em;
+}
+
+.explorer-close {
+  flex-shrink: 0;
+  width: 42px;
+  height: 42px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 50%;
+  background: transparent;
+  color: #f4f5f7;
+  font-size: 28px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.explorer-close:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.explorer-content {
+  padding-top: 25px;
+  color: #a0a8b4;
+  font-size: 14px;
+  line-height: 1.8;
+}
+
+@keyframes explorer-slide-in {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@media (max-width: 600px) {
+  .explorer-panel {
+    padding: 24px 20px;
+  }
+}
+
+/* TECHNICAL EXPLORER CONTENT */
+
+.explorer-intro {
+  max-width: 680px;
+  margin: 0 auto 30px;
+  text-align: center;
+}
+
+.explorer-intro h3 {
+  margin: 10px 0;
+  color: #f4f5f7;
+  font-size: clamp(28px, 3vw, 40px);
+  font-weight: 500;
+  letter-spacing: -1.2px;
+}
+
+.explorer-intro > p:last-child {
+  max-width: 540px;
+  margin: 0 auto;
+  color: #969da9;
+  font-size: 14px;
+  line-height: 1.8;
+}
+
+.explorer-system-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.explorer-system-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  min-width: 0;
+  min-height: 205px;
+  padding: 20px;
+  border: 1px solid #252b35;
+  border-radius: 10px;
+  background: #10141b;
+  color: #f4f5f7;
+  text-align: left;
+  cursor: default;
+  transition:
+    border-color 0.2s ease,
+    background 0.2s ease,
+    transform 0.2s ease;
+}
+
+
+.system-number {
+  color: #8a95a5;
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 1.2px;
+}
+
+.system-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  margin: 20px 0 12px;
+  border: 1px solid #34485f;
+  border-radius: 8px;
+  background: #172333;
+  color: #9ec8f0;
+  font-size: 21px;
+}
+
+.explorer-system-card h3 {
+  margin: 0 0 7px;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.explorer-system-card p {
+  margin: 0 0 18px;
+  color: #969da9;
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+.system-link {
+  margin-top: auto;
+  color: #9ec8f0;
+  font-size: 11px;
+  letter-spacing: 0.2px;
+}
+
+@media (max-width: 600px) {
+  .explorer-system-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .explorer-system-card {
+    min-height: 175px;
+  }
+
+  .explorer-intro h3 {
+    font-size: 28px;
+  }
+}
+
+/* FULL-SCREEN AIRCRAFT SYSTEMS IMAGE */
+
+.systems-image-overlay {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 99999;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 60px 30px 30px;
+  box-sizing: border-box;
+
+  background: rgba(3, 5, 9, 0.97);
+  backdrop-filter: blur(12px);
+}
+
+.systems-fullscreen-image {
+  display: block;
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  border-radius: 8px;
+}
+
+.systems-image-close {
+  position: absolute;
+  top: 18px;
+  right: 26px;
+  z-index: 100000;
+
+  width: 42px;
+  height: 42px;
+  border: 1px solid #39414d;
+  border-radius: 50%;
+  background: #171c25;
+  color: #ffffff;
+  font-size: 28px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.systems-image-close:hover {
+  background: #293342;
+}
+
+/* BUTTON INSIDE THE TECHNICAL EXPLORER */
+
+.systems-image-section {
+  margin-top: 28px;
+}
+
+.systems-image-button {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 17px 20px;
+
+  border: 1px solid #34485f;
+  border-radius: 10px;
+  background: #172333;
+  color: #f4f5f7;
+  font-size: 13px;
+  text-align: left;
+  cursor: pointer;
+}
+
+.systems-image-button:hover {
+  background: #202f41;
+  border-color: #6e9ecb;
+}
+
+.systems-image-button span {
+  color: #9ec8f0;
+  font-size: 18px;
 }

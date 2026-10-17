@@ -8,7 +8,7 @@ AeroMind uses third-party 3D models to support its aircraft visualization featur
 - **Original filename:** `A320_nologo.glb`
 - **Source repository:** https://github.com/amvlab/aircraft-models
 - **Direct asset URL:** https://raw.githubusercontent.com/amvlab/aircraft-models/refs/heads/main/models/A320_nologo.glb
-- **License:** Creative Commons Attribution 4.0 International (CC BY 4.0), as previously identified; please verify the license in the original repository.
+- **License:** Creative Commons Attribution 4.0 International (CC BY 4.0).
 
 The model file was renamed to `a320.glb` for integration into AeroMind.
 
@@ -18,7 +18,7 @@ The model file was renamed to `a320.glb` for integration into AeroMind.
 - **Model title:** CFM56-5B
 - **Creator:** CarlosCG31
 - **Original model page:** https://sketchfab.com/3d-models/cfm56-5b-6958dfcec16e453b989efe014ab00d64
-- **License:** Verify the exact Creative Commons license shown on the original Sketchfab listing before publishing this attribution.
+- **License:** CC BY 4.0
 
 The model was downloaded and integrated into AeroMind's 3D viewer.
 
